@@ -1,0 +1,16 @@
+- name: play1
+  hosts: local
+  connection: local  # (no need of ssh username & password and credentials)
+  tasks:
+    - name: run play1
+      ansible.builtin.debug:
+        msg: "Play1 and task1"
+
+- name: play2
+  hosts: local
+  connection: local  # (no need of ssh username & password and credentials)
+  tasks:
+    - name: run play2
+      ansible.builtin.debug:
+        msg: "Play2 and task2"
+

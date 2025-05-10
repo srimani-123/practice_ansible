@@ -1,0 +1,21 @@
+- name: variables
+  hosts: local
+  connection: local
+  vars:   # Play-level variables
+    COURSE: "Devops with aws"
+    DURATION: "Only 4 months to go bro"
+    TUTOR: "Sri Manikanta Angadi"
+
+  tasks:
+    - name: print the variables
+      vars:   # Task-level variable override
+        COURSE: "Ansible"
+      ansible.builtin.debug:
+        msg: "course is {{ COURSE }} and the duration is {{ DURATION }} and the tutor is {{ TUTOR }}"
+
+    - name: print the variables again
+      vars:   # Task-level variable override
+        COURSE: "Ansible1"
+      ansible.builtin.debug:
+        msg: "course is {{ COURSE }} and the duration is {{ DURATION }} and the tutor is {{ TUTOR }}"
+
