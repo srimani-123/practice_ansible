@@ -1,0 +1,47 @@
+- name: Filters Playbook
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    fruits: "apple, banana, orange"
+    course_dict:
+      name: ansible
+      duration: 10hrs
+      trainer: sviakumar
+    course_list:
+      - {'key': 'name', 'value': 'ansible'}
+      - {'key': 'duration', 'value': '10hrs'}
+      - {'key': 'trainer', 'value': 'sviakumar'}
+    name: "Sri Manikanta Angadi"
+    numbers: [1, 14, 56, 76, 86, 99, 3453]
+
+  tasks:
+    - name: Handle undefined variable
+      ansible.builtin.debug:
+        msg: "Hello {{ person | default('Manish') }}"
+
+    - name: Convert string to list
+      ansible.builtin.debug:
+        msg: "Fruits are: {{ fruits | split(', ') }}"
+
+    - name: Convert map into list
+      ansible.builtin.debug:
+        msg: "Course info: {{ course_dict | dict2items }}"
+
+    - name: Convert list into map
+      ansible.builtin.debug:
+        msg: "Course info: {{ course_list | items2dict }}"
+
+    - name: Convert upper to lower
+      ansible.builtin.debug:
+        msg: "Hello {{ name | lower }}"
+
+    - name: Convert lower to upper
+      ansible.builtin.debug:
+        msg: "Hello {{ name | upper }}"
+
+    - name: Print min and max
+      ansible.builtin.debug:
+        msg: "Min is: {{ numbers | min }} Max is: {{ numbers | max }}"
+
